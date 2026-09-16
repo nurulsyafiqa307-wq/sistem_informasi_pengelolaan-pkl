@@ -149,74 +149,65 @@ class PengajuanPklController extends Controller
             )
         );
     }
+public function update(
+    Request $request,
+    PengajuanPkl $pengajuan
+) {
+    $validated = $request->validate([
+        'status' => 'required|in:Menunggu Seleksi,Lolos,Tidak Lolos',
+        'guru_pembimbing_id' => 'nullable|exists:gurus,id',
+    ]);
 
-    public function update(
-        Request $request,
-        PengajuanPkl $pengajuan
+    /*
+    |--------------------------------------------------------------------------
+    | Jika status Lolos, guru pembimbing wajib dipilih
+    |--------------------------------------------------------------------------
+    */
+    if (
+        $validated['status'] === 'Lolos' &&
+        empty($validated['guru_pembimbing_id'])
     ) {
-        $validated = $request->validate([
-            'siswa_id' => 'required|exists:siswas,id',
-            'tempat_pkl_id' => 'required|exists:tempat_pkls,id',
-            'tanggal_pengajuan' => 'required|date',
-            'status' => 'required|in:Menunggu Seleksi,Lolos,Tidak Lolos',
-            'guru_pembimbing_id' => 'nullable|exists:gurus,id',
-        ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Jika status Lolos, guru pembimbing wajib dipilih
-        |--------------------------------------------------------------------------
-        */
-
-        if (
-            $validated['status'] === 'Lolos' &&
-            empty($validated['guru_pembimbing_id'])
-        ) {
-            return back()
-                ->withErrors([
-                    'guru_pembimbing_id' =>
-                        'Guru pembimbing wajib dipilih jika pengajuan Lolos.'
-                ])
-                ->withInput();
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update pengajuan
-        |--------------------------------------------------------------------------
-        */
-
-        $pengajuan->update([
-            'siswa_id' => $validated['siswa_id'],
-            'tempat_pkl_id' => $validated['tempat_pkl_id'],
-            'tanggal_pengajuan' => $validated['tanggal_pengajuan'],
-            'status' => $validated['status'],
-        ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update guru pembimbing siswa
-        |--------------------------------------------------------------------------
-        */
-
-        $siswa = Siswa::findOrFail($validated['siswa_id']);
-
-        if ($validated['status'] === 'Lolos') {
-            $siswa->update([
-                'guru_pembimbing_id' => $validated['guru_pembimbing_id'],
-                'status_pkl' => 'Lolos',
-                'tempat_pkl' => $pengajuan->tempatPkl->nama_perusahaan,
-            ]);
-        } else {
-            $siswa->update([
-                'guru_pembimbing_id' => null,
-            ]);
-        }
-
-        return redirect()
-            ->route('admin.pengajuan.index')
-            ->with('success', 'Pengajuan PKL berhasil diperbarui.');
+        return back()
+            ->withErrors([
+                'guru_pembimbing_id' =>
+                    'Guru pembimbing wajib dipilih jika pengajuan Lolos.'
+            ])
+            ->withInput();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update status pengajuan
+    |--------------------------------------------------------------------------
+    */
+    $pengajuan->update([
+        'status' => $validated['status'],
+    ]);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update guru pembimbing siswa
+    |--------------------------------------------------------------------------
+    */
+    $siswa = Siswa::findOrFail($pengajuan->siswa_id);
+
+    if ($validated['status'] === 'Lolos') {
+        $siswa->update([
+            'guru_pembimbing_id' => $validated['guru_pembimbing_id'],
+            'status_pkl' => 'Lolos',
+            'tempat_pkl' => $pengajuan->tempatPkl->nama_perusahaan,
+        ]);
+    } else {
+        $siswa->update([
+            'guru_pembimbing_id' => null,
+        ]);
+    }
+
+    return redirect()
+        ->route('admin.pengajuan.index')
+        ->with('success', 'Pengajuan PKL berhasil diperbarui.');
+}
+    
 
     public function destroy(PengajuanPkl $pengajuan)
     {
