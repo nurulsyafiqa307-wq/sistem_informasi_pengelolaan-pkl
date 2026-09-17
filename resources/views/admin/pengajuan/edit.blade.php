@@ -143,11 +143,12 @@
                                 Status Pengajuan
                             </label>
 
-                            <select
+                                                <select
                                 name="status"
                                 id="status"
                                 required
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition cursor-pointer"
+                                class="appearance-none !bg-white !text-slate-800 w-full rounded-xl border border-slate-300 px-4 py-3 pr-10 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition cursor-pointer"
+                                style="color-scheme: light !important;"
                             >
                                 <option
                                     value="Menunggu Seleksi"
@@ -188,27 +189,27 @@
                             </label>
 
                             <select
-                                name="guru_pembimbing_id"
-                                id="guru_pembimbing_id"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition cursor-pointer"
-                            >
-                                <option value="">
-                                    -- Pilih Guru Pembimbing --
+                            name="guru_pembimbing_id"
+                            id="guru_pembimbing_id"
+                            class="appearance-none !bg-white !text-slate-800 w-full rounded-xl border border-slate-300 px-4 py-3 pr-10 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition cursor-pointer"
+                            style="color-scheme: light !important;"
+                        >
+                            <option value="">
+                                -- Pilih Guru Pembimbing --
+                            </option>
+
+                            @foreach($gurus as $guru)
+                                <option
+                                    value="{{ $guru->id }}"
+                                    {{ old(
+                                        'guru_pembimbing_id',
+                                        $pengajuan->siswa->guru_pembimbing_id ?? ''
+                                    ) == $guru->id ? 'selected' : '' }}
+                                >
+                                    {{ $guru->nama }}
                                 </option>
-
-                                @foreach($gurus as $guru)
-                                    <option
-                                        value="{{ $guru->id }}"
-                                        {{ old(
-                                            'guru_pembimbing_id',
-                                            $pengajuan->siswa->guru_pembimbing_id ?? ''
-                                        ) == $guru->id ? 'selected' : '' }}
-                                    >
-                                        {{ $guru->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
-
+                            @endforeach
+                        </select>
                             <p class="text-[11px] text-amber-600 flex items-center gap-1.5 mt-1.5">
                                 <svg class="w-3.5 h-3.5 shrink-0" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
