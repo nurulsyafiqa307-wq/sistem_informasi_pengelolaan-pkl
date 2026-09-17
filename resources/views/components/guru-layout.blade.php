@@ -544,49 +544,6 @@
 
             </div>
 
-
-            {{-- USER HEADER --}}
-            <div class="flex items-center gap-2.5 shrink-0">
-
-                <div class="text-right hidden sm:block">
-
-                    <p
-                        class="text-[13px]
-                               font-medium
-                               text-slate-800
-                               leading-tight
-                               truncate
-                               max-w-[180px]"
-                    >
-                        {{ auth()->user()->name ?? 'Guru' }}
-                    </p>
-
-                    <p
-                        class="text-[10px]
-                               text-slate-400
-                               leading-tight
-                               mt-0.5"
-                    >
-                        Guru
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="w-9 h-9 rounded-xl
-                           bg-gradient-to-br from-blue-500 to-blue-700
-                           flex items-center justify-center
-                           text-sm font-semibold
-                           text-white
-                           shrink-0
-                           shadow-lg shadow-blue-500/20"
-                >
-                    {{ strtoupper(substr(auth()->user()->name ?? 'G', 0, 1)) }}
-                </div>
-
-            </div>
-
         </header>
 
 

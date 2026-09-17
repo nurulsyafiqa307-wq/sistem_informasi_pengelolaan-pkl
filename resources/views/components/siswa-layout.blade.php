@@ -538,7 +538,7 @@ select.form-select {
 
                 <div class="flex items-center gap-4">
 
-                    <div class="text-right hidden sm:block">
+                    {{-- <div class="text-right hidden sm:block">
 
                         <p class="text-sm font-medium text-slate-700">
                             {{ auth()->user()->name ?? 'Siswa' }}
@@ -548,9 +548,9 @@ select.form-select {
                             Siswa
                         </p>
 
-                    </div>
+                    </div> --}}
 
-                    <div class="avatar-ring w-10 h-10 rounded-full">
+                    {{-- <div class="avatar-ring w-10 h-10 rounded-full">
 
                         <div>
 
@@ -560,7 +560,7 @@ select.form-select {
 
                         </div>
 
-                    </div>
+                    </div> --}}
 
                 </div>
 
