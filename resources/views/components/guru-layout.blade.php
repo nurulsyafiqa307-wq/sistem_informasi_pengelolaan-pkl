@@ -475,61 +475,37 @@
 
             <div class="flex items-center gap-3 min-w-0">
 
-                {{-- MENU BUTTON --}}
-                <button
-                    @click="sidebarOpen = !sidebarOpen"
-
-                    class="w-9 h-9 rounded-xl
-                           bg-white
-                           border border-slate-200
-                           flex items-center justify-center
-                           text-slate-500
-                           hover:text-slate-800
-                           hover:bg-slate-50
-                           hover:border-slate-300
-                           transition-all
-                           shrink-0"
-
-                    aria-label="Buka atau tutup menu navigasi"
-                >
-
-                    <svg
-                        x-show="!sidebarOpen"
-                        class="w-[18px] h-[18px]"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                    >
-
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M4 6h16M4 12h16M4 18h16"
-                        />
-
-                    </svg>
-
-
-                    <svg
-                        x-show="sidebarOpen"
-                        x-cloak
-                        class="w-[18px] h-[18px]"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                    >
-
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-                        />
-
-                    </svg>
-
-                </button>
+                
+                   {{-- MENU BUTTON --}}
+<button
+    type="button"
+    @click="sidebarOpen = !sidebarOpen"
+    class="w-9 h-9 rounded-xl
+           bg-white
+           border border-slate-200
+           flex items-center justify-center
+           text-slate-500
+           hover:text-slate-800
+           hover:bg-slate-50
+           hover:border-slate-300
+           transition-all
+           shrink-0"
+    aria-label="Buka atau tutup menu navigasi"
+>
+    <svg
+        class="w-[18px] h-[18px]"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+        />
+    </svg>
+</button>
 
 
                 <h2
