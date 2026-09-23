@@ -1850,6 +1850,7 @@
                         <button
                             type="submit"
                             title="Logout"
+                            aria-label="Logout"
                             class="flex h-7 w-7 items-center justify-center rounded-md transition"
                             style="color: #bfdbfe;"
                             onmouseover="this.style.background='rgba(239,68,68,0.15)';this.style.color='#fca5a5';"
@@ -1857,7 +1858,8 @@
 
                             <i
                                 data-lucide="log-out"
-                                class="h-3.5 w-3.5">
+                                class="h-3.5 w-3.5"
+                                aria-hidden="true">
                             </i>
 
                         </button>
@@ -1889,15 +1891,16 @@
 
 
                     <button
+                        type="button"
                         onclick="toggleSidebar()"
+                        aria-label="Buka menu navigasi"
                         class="flex h-8 w-8 items-center justify-center rounded-md lg:hidden transition hover:bg-blue-50"
                         style="color: var(--text-secondary);">
-
                         <i
                             data-lucide="menu"
-                            class="h-[18px] w-[18px]">
+                            class="h-[18px] w-[18px]"
+                            aria-hidden="true">
                         </i>
-
                     </button>
 
 
@@ -2002,11 +2005,6 @@
         </div>
 
     </div>
-
-
-    <!-- =========================================================
-         SWEETALERT2
-         ========================================================= -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
@@ -2150,11 +2148,6 @@
         );
 
     </script>
-
-
-    <!-- =========================================================
-         SWEETALERT POSITION
-         ========================================================= -->
 
     <style>
 

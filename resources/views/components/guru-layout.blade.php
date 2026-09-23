@@ -118,10 +118,9 @@
             <div class="ml-3 min-w-0">
 
                 <h1 class="text-[13px] font-bold tracking-wide text-slate-800 truncate">
-                    MANEJEMEN PKL
+                    PENGELOLAAN PKL
                 </h1>
-
-                <p class="text-[10px] text-slate-400 leading-none mt-0.5">
+                <p class="text-[10px] text-slate-600 leading-none mt-0.5">
                     Sistem Informasi
                 </p>
 
@@ -390,11 +389,10 @@
                     @csrf
 
                     <button
-                        type="submit"
-                        title="Keluar / Logout"
-
-                        class="group relative flex h-9 w-9 items-center justify-center
-                               rounded-xl
+    type="submit"
+    title="Keluar / Logout"
+    aria-label="Keluar / Logout"
+    class="group relative flex h-9 w-9 items-center justify-center
                                border border-rose-200
                                bg-rose-50
                                text-rose-500
@@ -492,7 +490,7 @@
                            transition-all
                            shrink-0"
 
-                    aria-label="Toggle menu"
+                    aria-label="Buka atau tutup menu navigasi"
                 >
 
                     <svg

@@ -330,13 +330,15 @@ select.form-select {
     <div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <button
-        id="toggleBtn"
-        onclick="toggleSidebar()"
-        class="fixed top-5 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer text-base"
-        style="left: 268px;"
-    >
-        <i class="fas fa-times" id="toggleIcon"></i>
-    </button>
+            type="button"
+            id="toggleBtn"
+            onclick="toggleSidebar()"
+            aria-label="Buka atau tutup menu navigasi"
+            class="fixed top-5 w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer text-base"
+            style="left: 268px;"
+        >
+            <i class="fas fa-bars" id="toggleIcon"></i>
+</button>
 
     <div class="min-h-screen flex">
 
@@ -360,12 +362,9 @@ select.form-select {
                 <div class="ml-3">
 
                     <h1 class="text-lg font-bold tracking-wide text-white">
-                        MANEJEMEN PKL
+                        PENGELOLAAN PKL
                     </h1>
-
-                    <p class="text-xs text-blue-100">
-                        Sistem Informasi
-                    </p>
+                    
 
                 </div>
 
@@ -624,7 +623,7 @@ select.form-select {
 
                 toggleBtn.style.left = '268px';
 
-                toggleIcon.className = 'fas fa-times';
+                toggleIcon.className = 'fas fa-bars';
 
                 overlay.classList.remove('active');
 
@@ -644,7 +643,7 @@ select.form-select {
 
                     overlay.classList.add('active');
 
-                    toggleIcon.className = 'fas fa-times';
+                    toggleIcon.className = 'fas fa-bars';
 
                 } else {
 
@@ -666,7 +665,7 @@ select.form-select {
 
                     toggleBtn.style.left = '268px';
 
-                    toggleIcon.className = 'fas fa-times';
+                    toggleIcon.className = 'fas fa-bars';
 
                 } else {
 
