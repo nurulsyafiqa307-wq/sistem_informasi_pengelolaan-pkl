@@ -1,58 +1,407 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Informasi Pengelolaan PKL
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web berbasis Laravel untuk membantu sekolah mengelola kegiatan Praktik Kerja Lapangan (PKL) secara terpusat.
 
-## About Laravel
+Sistem ini menyediakan akses dan fitur berbeda untuk tiga jenis pengguna:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Admin**
+- **Guru Pembimbing**
+- **Siswa**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin
 
-## Learning Laravel
+- Melihat dashboard administrasi.
+- Mengelola data siswa.
+- Mengelola data guru pembimbing.
+- Mengelola data tempat PKL atau perusahaan mitra.
+- Mengelola dan menyeleksi pengajuan PKL siswa.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Guru Pembimbing
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Melihat dashboard guru.
+- Melihat jurnal PKL siswa.
+- Meninjau jurnal PKL.
+- Memperbarui status jurnal PKL.
+- Memberikan penilaian kepada siswa.
+- Melihat, mengubah, dan menghapus penilaian siswa.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Siswa
 
-## Agentic Development
+- Melihat dashboard siswa.
+- Mengajukan tempat PKL.
+- Melihat status pengajuan PKL.
+- Mengisi jurnal harian PKL.
+- Mengubah dan menghapus jurnal.
+- Mengunggah foto pendukung jurnal.
+- Melihat hasil penilaian PKL.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Fitur Umum
+
+- Autentikasi pengguna.
+- Otorisasi berdasarkan role pengguna.
+- Pengelolaan profil pengguna.
+- Penyimpanan file menggunakan Laravel Storage.
+- Pembuatan dokumen PDF menggunakan Dompdf.
+- Dukungan autentikasi sosial menggunakan Laravel Socialite.
+
+## Teknologi yang Digunakan
+
+- PHP `^8.3`
+- Laravel `^13.8`
+- Blade Template
+- Laravel Breeze
+- MySQL atau SQLite
+- Composer
+- Node.js dan npm
+- Vite
+- Tailwind CSS
+- Bootstrap
+- Alpine.js
+- Laravel Socialite
+- barryvdh/laravel-dompdf
+
+## Persyaratan Sistem
+
+Pastikan perangkat telah terpasang:
+
+- PHP 8.3 atau versi lebih baru
+- Composer
+- Node.js dan npm
+- MySQL 8.0 atau SQLite
+- Git
+- Ekstensi PHP yang dibutuhkan Laravel, seperti:
+  - `mbstring`
+  - `openssl`
+  - `pdo`
+  - `pdo_mysql` atau `pdo_sqlite`
+  - `tokenizer`
+  - `xml`
+  - `ctype`
+  - `json`
+  - `fileinfo`
+
+## Instalasi
+
+### 1. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/nurulsyafiqa307-wq/sistem_informasi_pengelolaan-pkl.git
+cd sistem_informasi_pengelolaan-pkl
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependency PHP
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Siapkan File Environment
 
-## Code of Conduct
+Salin file `.env.example` menjadi `.env`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Linux atau macOS:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Windows:
 
-## License
+```powershell
+copy .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+## Konfigurasi Database
+
+### Menggunakan MySQL
+
+Buat database baru, misalnya:
+
+```sql
+CREATE DATABASE jurnal_pkl;
+```
+
+Kemudian sesuaikan konfigurasi database pada file `.env`:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=jurnal_pkl
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Jalankan migrasi database:
+
+```bash
+php artisan migrate
+```
+
+Jika diperlukan, repository juga menyediakan file `setup.sql` yang dapat di-import melalui MySQL atau phpMyAdmin untuk menyiapkan struktur dan data contoh.
+
+> Tinjau isi `setup.sql` terlebih dahulu dan jangan menggunakan data demo atau credential bawaan untuk production.
+
+### Menggunakan SQLite
+
+Buat file database SQLite:
+
+Linux atau macOS:
+
+```bash
+touch database/database.sqlite
+```
+
+Windows PowerShell:
+
+```powershell
+New-Item database/database.sqlite -ItemType File
+```
+
+Kemudian ubah konfigurasi pada `.env`:
+
+```dotenv
+DB_CONNECTION=sqlite
+```
+
+Jalankan migrasi:
+
+```bash
+php artisan migrate
+```
+
+## Install Dependency Frontend
+
+```bash
+npm install
+```
+
+Untuk membuat asset production:
+
+```bash
+npm run build
+```
+
+## Storage Link
+
+Buat symbolic link untuk file yang disimpan pada storage publik:
+
+```bash
+php artisan storage:link
+```
+
+## Menjalankan Aplikasi
+
+Jalankan server Laravel:
+
+```bash
+php artisan serve
+```
+
+Aplikasi dapat diakses melalui:
+
+```text
+http://localhost:8000
+```
+
+Untuk menjalankan Vite dalam mode development, buka terminal lain lalu jalankan:
+
+```bash
+npm run dev
+```
+
+## Menjalankan Seluruh Service Development
+
+Repository menyediakan script Composer untuk menjalankan beberapa service development secara bersamaan:
+
+```bash
+composer run dev
+```
+
+Script tersebut menjalankan beberapa proses, antara lain:
+
+- Laravel development server
+- Queue listener
+- Laravel Pail
+- Vite development server
+
+## Perintah Penting
+
+### Membersihkan Cache
+
+```bash
+php artisan optimize:clear
+```
+
+### Menjalankan Migrasi Ulang
+
+```bash
+php artisan migrate:fresh
+```
+
+> Gunakan perintah ini dengan hati-hati karena akan menghapus seluruh tabel database.
+
+### Menjalankan Seeder
+
+```bash
+php artisan db:seed
+```
+
+### Menjalankan Test
+
+```bash
+php artisan test
+```
+
+Atau:
+
+```bash
+composer test
+```
+
+### Memeriksa Route
+
+```bash
+php artisan route:list
+```
+
+## Struktur Direktori
+
+```text
+app/
+├── Http/
+│   └── Controllers/
+│       ├── Admin/
+│       ├── Guru/
+│       └── Siswa/
+├── Models/
+└── Providers/
+
+bootstrap/
+config/
+database/
+├── factories/
+├── migrations/
+└── seeders/
+
+public/
+resources/
+├── css/
+├── js/
+└── views/
+
+routes/
+├── auth.php
+└── web.php
+
+storage/
+tests/
+setup.sql
+```
+
+## Role Pengguna
+
+Aplikasi menggunakan tiga role utama:
+
+| Role | Keterangan |
+|---|---|
+| `admin` | Mengelola data utama dan pengajuan PKL |
+| `guru` | Membimbing, meninjau jurnal, dan menilai siswa |
+| `siswa` | Mengajukan PKL, mengisi jurnal, dan melihat penilaian |
+
+Setiap pengguna harus memiliki role yang sesuai agar dapat mengakses dashboard dan fitur yang tersedia.
+
+## Konfigurasi Environment
+
+Beberapa konfigurasi penting pada file `.env`:
+
+```dotenv
+APP_NAME="Sistem Informasi Pengelolaan PKL"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=jurnal_pkl
+DB_USERNAME=root
+DB_PASSWORD=
+
+FILESYSTEM_DISK=local
+SESSION_DRIVER=database
+CACHE_STORE=database
+QUEUE_CONNECTION=database
+```
+
+Untuk lingkungan production:
+
+```dotenv
+APP_ENV=production
+APP_DEBUG=false
+```
+
+Jangan membagikan atau melakukan commit terhadap file `.env` karena dapat berisi informasi sensitif.
+
+## Data Demo
+
+File `setup.sql` berisi struktur tabel dan data contoh aplikasi, termasuk data pengguna, siswa, guru, tempat PKL, jurnal, pengajuan, dan penilaian.
+
+Gunakan data tersebut hanya untuk kebutuhan development atau demo. Untuk production, buat data dan credential baru yang aman.
+
+## Catatan Keamanan
+
+- Jangan mengaktifkan `APP_DEBUG=true` pada production.
+- Jangan menyimpan password atau credential asli di repository.
+- Jangan membagikan file `.env`.
+- Ganti seluruh credential demo sebelum deployment.
+- Pastikan konfigurasi database production menggunakan password yang kuat.
+- Validasi file upload sebelum disimpan.
+- Gunakan HTTPS pada lingkungan production.
+- Jalankan perintah optimasi Laravel setelah konfigurasi production selesai:
+
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+## Kontribusi
+
+Kontribusi dipersilakan. Untuk berkontribusi:
+
+1. Fork repository.
+2. Buat branch baru:
+
+   ```bash
+   git checkout -b feature/nama-fitur
+   ```
+
+3. Lakukan perubahan yang diperlukan.
+4. Jalankan pengujian:
+
+   ```bash
+   php artisan test
+   ```
+
+5. Commit perubahan:
+
+   ```bash
+   git commit -m "feat: menambahkan fitur baru"
+   ```
+
+6. Push branch ke repository fork.
+7. Buat Pull Request.
+
+## Lisensi
+
+Project ini menggunakan lisensi MIT.
