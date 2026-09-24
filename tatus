@@ -1,0 +1,347 @@
+[1mdiff --git a/app/Http/Controllers/Admin/DashboardController.php b/app/Http/Controllers/Admin/DashboardController.php[m
+[1mindex b2925e0..91bf9db 100644[m
+[1m--- a/app/Http/Controllers/Admin/DashboardController.php[m
+[1m+++ b/app/Http/Controllers/Admin/DashboardController.php[m
+[36m@@ -5,7 +5,7 @@[m
+ use App\Http\Controllers\Controller;[m
+ use App\Models\Siswa;[m
+ use App\Models\Guru;[m
+[31m-use App\Models\PengajuanPKL;[m
+[32m+[m[32muse App\Models\PengajuanPkl;[m
+ use Illuminate\Support\Facades\Schema;[m
+ use Illuminate\View\View;[m
+ [m
+[36m@@ -15,10 +15,10 @@[m [mpublic function index(): View[m
+     {[m
+         $siswaCount     = Siswa::count();[m
+         $guruCount      = Guru::count();[m
+[31m-        $pengajuanCount = PengajuanPKL::count();[m
+[32m+[m[32m        $pengajuanCount = PengajuanPkl::count();[m
+ [m
+         // Status pengajuan[m
+[31m-        $pendingCount = PengajuanPKL::where('status', 'Menunggu Seleksi')->count();[m
+[32m+[m[32m        $pendingCount = PengajuanPkl::where('status', 'Menunggu Seleksi')->count();[m
+ [m
+         // Jurnal — aman kalau tabel belum ada[m
+         $jurnalCount  = 0;[m
+[36m@@ -33,7 +33,7 @@[m [mpublic function index(): View[m
+         }[m
+ [m
+         // Progress PKL (ambil dari tabel pengajuan)[m
+[31m-        $pklAktif = PengajuanPKL::where('status', 'Lolos')->count();[m
+[32m+[m[32m        $pklAktif = PengajuanPkl::where('status', 'Lolos')->count();[m
+         $pklSelesai = 0;[m
+         $pklBelum = $siswaCount - $pklAktif;[m
+ [m
+[36m@@ -43,7 +43,7 @@[m [mpublic function index(): View[m
+ [m
+         $recentSiswa = Siswa::latest()->take(5)->get();[m
+ [m
+[31m-        $pendingPengajuan = PengajuanPKL::with('siswa')[m
+[32m+[m[32m        $pendingPengajuan = PengajuanPkl::with('siswa')[m
+             ->where('status', 'Menunggu Seleksi')[m
+             ->latest()[m
+             ->take(3)[m
+[1mdiff --git a/bootstrap/cache/.gitignore b/bootstrap/cache/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex f18fbf9..002b919 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -1,5 +1,5 @@[m
+ {[m
+[31m-    "name": "jurnal",[m
+[32m+[m[32m    "name": "sistem_informasi_pengelolaan-pkl",[m
+     "lockfileVersion": 3,[m
+     "requires": true,[m
+     "packages": {[m
+[36m@@ -234,9 +234,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -254,9 +251,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -274,9 +268,6 @@[m
+                 "ppc64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -294,9 +285,6 @@[m
+                 "s390x"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -314,9 +302,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -334,9 +319,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -557,9 +539,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -577,9 +556,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -597,9 +573,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -617,9 +590,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MIT",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -1576,9 +1546,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -1600,9 +1567,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -1624,9 +1588,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -1648,9 +1609,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -2748,9 +2706,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -2772,9 +2727,6 @@[m
+                 "arm64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -2796,9 +2748,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "glibc"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[36m@@ -2820,9 +2769,6 @@[m
+                 "x64"[m
+             ],[m
+             "dev": true,[m
+[31m-            "libc": [[m
+[31m-                "musl"[m
+[31m-            ],[m
+             "license": "MPL-2.0",[m
+             "optional": true,[m
+             "os": [[m
+[1mdiff --git a/resources/views/dashboard.blade.php b/resources/views/dashboard.blade.php[m
+[1mindex 39e60bc..2402835 100644[m
+[1m--- a/resources/views/dashboard.blade.php[m
+[1m+++ b/resources/views/dashboard.blade.php[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-<x-app>[m
+[32m+[m[32m<x-app-layout>[m
+     <x-slot:name="header">[m
+         <div>[m
+             <h2 class="text-lg font-bold text-white">Dashboard</h2>[m
+[36m@@ -10,11 +10,11 @@[m
+         $jumlahSiswa     = \App\Models\Siswa::count() ?? 0;[m
+         $jumlahGuru      = \App\Models\Guru::count() ?? 0;[m
+         $jumlahTempat    = \App\Models\TempatPKL::count() ?? 0;[m
+[31m-        $jumlahPengajuan = \App\Models\PengajuanPKL::count() ?? 0;[m
+[31m-        $jumlahJurnal    = \App\Models\Jurnal::count() ?? 0;[m
+[31m-        $jurnalHariIni   = \App\Models\Jurnal::whereDate('tanggal', now())->count() ?? 0;[m
+[31m-        $pengajuanMenunggu = \App\Models\PengajuanPKL::where('status', 'menunggu')->count() ?? 0;[m
+[31m-        $jurnalMenunggu  = \App\Models\Jurnal::where('status_jurnal', 'Menunggu Review')->count() ?? 0;[m
+[32m+[m[32m        $jumlahPengajuan = \App\Models\PengajuanPkl::count() ?? 0;[m
+[32m+[m[32m        $jumlahJurnal    = \App\Models\JurnalPKL::count() ?? 0;[m
+[32m+[m[32m        $jurnalHariIni   = \App\Models\JurnalPKL::whereDate('tanggal', now())->count() ?? 0;[m
+[32m+[m[32m        $pengajuanMenunggu = \App\Models\PengajuanPkl::where('status', 'menunggu')->count() ?? 0;[m
+[32m+[m[32m        $jurnalMenunggu  = \App\Models\JurnalPKL::where('status_jurnal', 'Menunggu Review')->count() ?? 0;[m
+     @endphp[m
+ [m
+     <!-- Welcome Banner -->[m
+[36m@@ -149,7 +149,7 @@[m
+             </div>[m
+             <div class="divide-y divide-white/[0.04]">[m
+                 @php[m
+[31m-                    $pengajuans = \App\Models\PengajuanPKL::with(['siswa', 'tempatPkl'])->latest()->take(5)->get();[m
+[32m+[m[32m                    $pengajuans = \App\Models\PengajuanPkl::with(['siswa', 'tempatPkl'])->latest()->take(5)->get();[m
+                 @endphp[m
+                 @if($pengajuans->count() > 0)[m
+                     @foreach($pengajuans as $p)[m
+[36m@@ -197,7 +197,7 @@[m
+             </div>[m
+             <div class="divide-y divide-white/[0.04]">[m
+                 @php[m
+[31m-                    $jurnals = \App\Models\Jurnal::with('siswa')->latest()->take(5)->get();[m
+[32m+[m[32m                    $jurnals = \App\Models\JurnalPKL::with('siswa')->latest()->take(5)->get();[m
+                 @endphp[m
+                 @if($jurnals->count() > 0)[m
+                     @foreach($jurnals as $j)[m
+[36m@@ -326,7 +326,7 @@[m
+                 <div class="space-y-4">[m
+                     @foreach($tempats as $t)[m
+                         @php[m
+[31m-                            $terisi = \App\Models\PengajuanPKL::where('tempat_id', $t->id_tempat)->where('status', 'lolos')->count() ?? 0;[m
+[32m+[m[32m                            $terisi = \App\Models\PengajuanPkl::where('tempat_id', $t->id_tempat)->where('status', 'lolos')->count() ?? 0;[m
+                             $kuota  = $t->kuota ?? 0;[m
+                             $persen = $kuota > 0 ? min(($terisi / $kuota) * 100, 100) : 0;[m
+                             $color  = $persen >= 80 ? 'from-red-500 to-rose-400' : ($persen >= 50 ? 'from-amber-500 to-yellow-400' : 'from-blue-500 to-cyan-400');[m
+[36m@@ -354,4 +354,4 @@[m
+     </div>[m
+ [m
+     @stack('scripts')[m
+[31m-</x-app>[m
+\ No newline at end of file[m
+[32m+[m[32m</x-app-layout>[m
+\ No newline at end of file[m
+[1mdiff --git a/resources/views/layouts/app.blade.php b/resources/views/layouts/app.blade.php[m
+[1mindex 8e5abcc..7a33e5f 100644[m
+[1m--- a/resources/views/layouts/app.blade.php[m
+[1m+++ b/resources/views/layouts/app.blade.php[m
+[36m@@ -1765,10 +1765,10 @@[m [mclass="h-4 w-4 shrink-0">[m
+ [m
+                             $pendingCount = 0;[m
+ [m
+[31m-                            if (class_exists(\App\Models\PengajuanPKL::class)) {[m
+[32m+[m[32m                            if (class_exists(\App\Models\PengajuanPkl::class)) {[m
+ [m
+                                 $pendingCount =[m
+[31m-                                    \App\Models\PengajuanPKL::where([m
+[32m+[m[32m                                    \App\Models\PengajuanPkl::where([m
+                                         'status',[m
+                                         'menunggu'[m
+                                     )->count() ?? 0;[m
+[1mdiff --git a/storage/app/.gitignore b/storage/app/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/app/private/.gitignore b/storage/app/private/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/app/public/.gitignore b/storage/app/public/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/.gitignore b/storage/framework/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/cache/.gitignore b/storage/framework/cache/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/cache/data/.gitignore b/storage/framework/cache/data/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/sessions/.gitignore b/storage/framework/sessions/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/testing/.gitignore b/storage/framework/testing/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/framework/views/.gitignore b/storage/framework/views/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m
+[1mdiff --git a/storage/logs/.gitignore b/storage/logs/.gitignore[m
+[1mold mode 100644[m
+[1mnew mode 100755[m

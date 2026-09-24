@@ -1,4 +1,4 @@
-<x-app>
+<x-app-layout>
     <x-slot:name="header">
         <div>
             <h2 class="text-lg font-bold text-white">Dashboard</h2>
@@ -10,11 +10,11 @@
         $jumlahSiswa     = \App\Models\Siswa::count() ?? 0;
         $jumlahGuru      = \App\Models\Guru::count() ?? 0;
         $jumlahTempat    = \App\Models\TempatPKL::count() ?? 0;
-        $jumlahPengajuan = \App\Models\PengajuanPKL::count() ?? 0;
-        $jumlahJurnal    = \App\Models\Jurnal::count() ?? 0;
-        $jurnalHariIni   = \App\Models\Jurnal::whereDate('tanggal', now())->count() ?? 0;
-        $pengajuanMenunggu = \App\Models\PengajuanPKL::where('status', 'menunggu')->count() ?? 0;
-        $jurnalMenunggu  = \App\Models\Jurnal::where('status_jurnal', 'Menunggu Review')->count() ?? 0;
+        $jumlahPengajuan = \App\Models\PengajuanPkl::count() ?? 0;
+        $jumlahJurnal    = \App\Models\JurnalPKL::count() ?? 0;
+        $jurnalHariIni   = \App\Models\JurnalPKL::whereDate('tanggal', now())->count() ?? 0;
+        $pengajuanMenunggu = \App\Models\PengajuanPkl::where('status', 'menunggu')->count() ?? 0;
+        $jurnalMenunggu  = \App\Models\JurnalPKL::where('status_jurnal', 'Menunggu Review')->count() ?? 0;
     @endphp
 
     <!-- Welcome Banner -->
@@ -149,7 +149,7 @@
             </div>
             <div class="divide-y divide-white/[0.04]">
                 @php
-                    $pengajuans = \App\Models\PengajuanPKL::with(['siswa', 'tempatPkl'])->latest()->take(5)->get();
+                    $pengajuans = \App\Models\PengajuanPkl::with(['siswa', 'tempatPkl'])->latest()->take(5)->get();
                 @endphp
                 @if($pengajuans->count() > 0)
                     @foreach($pengajuans as $p)
@@ -197,7 +197,7 @@
             </div>
             <div class="divide-y divide-white/[0.04]">
                 @php
-                    $jurnals = \App\Models\Jurnal::with('siswa')->latest()->take(5)->get();
+                    $jurnals = \App\Models\JurnalPKL::with('siswa')->latest()->take(5)->get();
                 @endphp
                 @if($jurnals->count() > 0)
                     @foreach($jurnals as $j)
@@ -326,7 +326,7 @@
                 <div class="space-y-4">
                     @foreach($tempats as $t)
                         @php
-                            $terisi = \App\Models\PengajuanPKL::where('tempat_id', $t->id_tempat)->where('status', 'lolos')->count() ?? 0;
+                            $terisi = \App\Models\PengajuanPkl::where('tempat_id', $t->id_tempat)->where('status', 'lolos')->count() ?? 0;
                             $kuota  = $t->kuota ?? 0;
                             $persen = $kuota > 0 ? min(($terisi / $kuota) * 100, 100) : 0;
                             $color  = $persen >= 80 ? 'from-red-500 to-rose-400' : ($persen >= 50 ? 'from-amber-500 to-yellow-400' : 'from-blue-500 to-cyan-400');
@@ -354,4 +354,4 @@
     </div>
 
     @stack('scripts')
-</x-app>
+</x-app-layout>

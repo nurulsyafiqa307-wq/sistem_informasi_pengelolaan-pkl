@@ -1765,10 +1765,10 @@
 
                             $pendingCount = 0;
 
-                            if (class_exists(\App\Models\PengajuanPKL::class)) {
+                            if (class_exists(\App\Models\PengajuanPkl::class)) {
 
                                 $pendingCount =
-                                    \App\Models\PengajuanPKL::where(
+                                    \App\Models\PengajuanPkl::where(
                                         'status',
                                         'menunggu'
                                     )->count() ?? 0;

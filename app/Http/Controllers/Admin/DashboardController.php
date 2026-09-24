@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use App\Models\Guru;
-use App\Models\PengajuanPKL;
+use App\Models\PengajuanPkl;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
@@ -15,10 +15,10 @@ class DashboardController extends Controller
     {
         $siswaCount     = Siswa::count();
         $guruCount      = Guru::count();
-        $pengajuanCount = PengajuanPKL::count();
+        $pengajuanCount = PengajuanPkl::count();
 
         // Status pengajuan
-        $pendingCount = PengajuanPKL::where('status', 'Menunggu Seleksi')->count();
+        $pendingCount = PengajuanPkl::where('status', 'Menunggu Seleksi')->count();
 
         // Jurnal — aman kalau tabel belum ada
         $jurnalCount  = 0;
@@ -33,7 +33,7 @@ class DashboardController extends Controller
         }
 
         // Progress PKL (ambil dari tabel pengajuan)
-        $pklAktif = PengajuanPKL::where('status', 'Lolos')->count();
+        $pklAktif = PengajuanPkl::where('status', 'Lolos')->count();
         $pklSelesai = 0;
         $pklBelum = $siswaCount - $pklAktif;
 
@@ -43,7 +43,7 @@ class DashboardController extends Controller
 
         $recentSiswa = Siswa::latest()->take(5)->get();
 
-        $pendingPengajuan = PengajuanPKL::with('siswa')
+        $pendingPengajuan = PengajuanPkl::with('siswa')
             ->where('status', 'Menunggu Seleksi')
             ->latest()
             ->take(3)
