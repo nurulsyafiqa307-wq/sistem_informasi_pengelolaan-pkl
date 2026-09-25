@@ -78,7 +78,7 @@ class JurnalPKLController extends Controller
 
         // Jurnal hanya boleh diisi jika pengajuan terbaru Lolos
         if (!$pengajuan || $pengajuan->status !== 'Lolos') {
-            abort(403, 'Kamu belum dinyatakan lolos PKL.');
+            abort(403, 'Kamu belum dinyatakan lolos Pengajuan PKL.');
         }
 
         return view('siswa.jurnal.create');
@@ -103,7 +103,7 @@ class JurnalPKLController extends Controller
 
         // Jurnal hanya boleh dibuat jika pengajuan terbaru Lolos
         if (!$pengajuan || $pengajuan->status !== 'Lolos') {
-            abort(403, 'Kamu belum dinyatakan lolos PKL.');
+            abort(403, 'Kamu belum dinyatakan lolos Pengajuan PKL.');
         }
 
         $data = $request->validate([

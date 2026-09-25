@@ -60,12 +60,12 @@
             border-radius: 10px;
         }
 
-        /* Tambahan: Style Ikon Menu */
+        /* Style Ikon Menu */
         .menu-link i {
             font-size: 1rem;
             width: 1.25rem;
             text-align: center;
-            color: #93c5fd; /* Warna biru soft untuk ikon tidak aktif */
+            color: #93c5fd;
             transition: all 0.25s ease;
         }
 
@@ -75,7 +75,7 @@
 
         .menu-link.menu-active i {
             color: #ffffff;
-            transform: scale(1.1); /* Sedikit membesar saat aktif */
+            transform: scale(1.1);
         }
 
         #toggleBtn {
@@ -194,20 +194,16 @@
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col justify-between">
             <div class="flex flex-col h-full">
                 {{-- LOGO --}}
-                <div class="h-20 flex items-center justify-between px-5 border-b border-white/10">
+                <div class="h-20 flex items-center justify-between px-5 border-b border-white/10 shrink-0">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl sidebar-logo flex items-center justify-center shrink-0">
-                            <span class="text-lg font-bold text-white">J</span>
+                        {{-- Logo Gambar Bulat --}}
+                        <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/20 bg-slate-950 flex items-center justify-center">
+                            <img src="{{ asset('images/image.png') }}" alt="Logo PKL" class="w-full h-full object-cover scale-125">
                         </div>
-                        <!-- Perbaikan: Ukuran teks diperkecil di mobile agar tidak terpotong -->
                         <h1 class="text-sm sm:text-base font-bold tracking-wide text-white leading-tight">
                             PENGELOLAAN PKL
                         </h1>
                     </div>
-
-                    <button onclick="closeSidebar()" class="lg:hidden text-blue-200 hover:text-white p-1 ml-2">
-                        <i class="fas fa-xmark text-xl"></i>
-                    </button>
                 </div>
 
                 {{-- MENU --}}
@@ -248,10 +244,9 @@
                 </div>
 
                 {{-- USER PROFILE BOTTOM --}}
-                <div class="p-4 border-t border-white/10 bg-slate-900/30">
+                <div class="p-4 border-t border-white/10 bg-slate-900/30 shrink-0">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex items-center gap-3 min-w-0">
-                            <!-- Tambahan: Lingkaran Avatar -->
                             <div class="w-9 h-9 rounded-full bg-blue-500/30 border border-blue-400/50 flex items-center justify-center shrink-0">
                                 <i class="fas fa-user text-blue-100 text-sm"></i>
                             </div>

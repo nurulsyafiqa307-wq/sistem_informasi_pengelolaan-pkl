@@ -108,13 +108,16 @@
                         oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 </div>
 
-                <div>
+               <div>
                     <label class="block text-[11px] font-semibold mb-1.5 text-slate-700">
                         Kelas <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" name="kelas" value="{{ old('kelas') }}"
-                           class="input-light w-full rounded-lg px-3.5 py-2.5 text-[12.5px]"
-                           placeholder="XI PPLG 1" required>
+                    <input type="text"
+                        name="kelas"
+                        value="{{ old('kelas', 'XII') }}"
+                        class="input-light w-full rounded-lg px-3.5 py-2.5 text-[12.5px]"
+                        readonly
+                        required>
                 </div>
 
                 <div>

@@ -137,10 +137,10 @@
                     <input
                         type="text"
                         name="kelas"
-                        value="{{ old('kelas', $siswa->kelas) }}"
-                        style="background-color: #ffffff !important; color: #1e293b !important;"
-                        class="w-full rounded-lg px-3.5 py-2.5 text-[12.5px] border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 transition-all outline-none"
-                        placeholder="XI PPLG 1"
+                        value="XII"
+                        readonly
+                        style="background-color: #f8fafc !important; color: #1e293b !important;"
+                        class="w-full rounded-lg px-3.5 py-2.5 text-[12.5px] border border-slate-200 cursor-not-allowed"
                         required
                     >
                 </div>
