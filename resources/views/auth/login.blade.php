@@ -3,10 +3,10 @@
 {{-- Masukkan Style Override ini di bagian atas --}}
 <style>
     /* Sembunyikan tombol mata bawaan browser Edge */
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear {
-    display: none;
-}
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+        display: none;
+    }
     
     input[type="email"],
     input[type="password"],
@@ -58,21 +58,24 @@ input[type="password"]::-ms-clear {
             <div class="relative bg-white p-8 sm:p-10 border border-slate-200">
 
                 {{-- LOGO --}}
-                <div class="text-center mb-8">
-                    <div class="relative inline-block">
-                        <div class="w-[72px] h-[72px] rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center shadow-xl shadow-blue-600/25 rotate-3 hover:rotate-0 transition-transform duration-300">
-                            <span class="text-2xl font-extrabold tracking-tight text-white">J</span>
-                        </div>
-                        <div class="absolute -inset-2 rounded-3xl bg-blue-500/10 blur-xl -z-10"></div>
-                    </div>
+<div class="text-center mb-8">
+    <div class="relative inline-block">
+        {{-- Pembungkus luar berbentuk lingkaran bulat sempurna --}}
+        <div class="w-20 h-20 rounded-full overflow-hidden shadow-xl shadow-cyan-500/20 hover:scale-105 transition-transform duration-300 border-2 border-slate-900 bg-slate-950 flex items-center justify-center">
+            <img src="{{ asset('images/image.png') }}" 
+                 alt="Logo Jurnal PKL" 
+                 class="w-full h-full object-cover rounded-full scale-125">
+        </div>
+        <div class="absolute -inset-2 rounded-full bg-cyan-500/10 blur-xl -z-10"></div>
+    </div>
 
-                    <h1 class="mt-6 text-[22px] sm:text-2xl font-bold text-slate-900 tracking-tight">
-                        Login Jurnal PKL
-                    </h1>
-                    <p class="text-slate-500 mt-1 text-[13px]">
-                        Masuk menggunakan akun dari Admin
-                    </p>
-                </div>
+    <h1 class="mt-6 text-[22px] sm:text-2xl font-bold text-slate-900 tracking-tight">
+        Login Jurnal PKL
+    </h1>
+    <p class="text-slate-500 mt-1 text-[13px]">
+        Masuk menggunakan akun dari Admin
+    </p>
+</div>
 
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
