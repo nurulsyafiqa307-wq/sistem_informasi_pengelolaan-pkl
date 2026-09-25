@@ -119,7 +119,7 @@ class SiswaController extends Controller
             'kelas' => 'required|string|max:50',
             'jurusan' => 'required|string|max:100',
             'no_hp' => 'nullable|digits_between:10,15',
-            'password' => 'nullable|string|min:8',
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         DB::transaction(function () use ($validated, $siswa) {

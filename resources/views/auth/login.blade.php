@@ -138,6 +138,17 @@
                             </button>
                         </div>
                     </div>
+                    <div class="text-right pt-1">
+                        <p class="text-xs text-slate-500">
+                            Lupa kata sandi?
+                            <a href="https://wa.me/6283848117366"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-blue-600 font-medium hover:text-blue-700 hover:underline">
+                                Hubungi Admin
+                            </a>
+                        </p>
+                    </div>
 
                     <div class="pt-2">
                         <button
